@@ -11,19 +11,18 @@
   border-style: groove;
   text-align: left;
   padding: 30px;
-}
-
-.login-form label {
-  margin-left: 5px;
-}
-
-.login-form input {
-  margin-top: 20px;
-  margin-left: 5px;
+  min-width: 50vh;
 }
 
 .login-btn {
-  margin-left: 30px;
-  height: 43px;
-  float: right;
+  width: 100%;
+}
+
+.email-address {
+  width: 100%;
+  line-height: 15.95px;
+}
+
+.password {
+  width: 100%;
 }

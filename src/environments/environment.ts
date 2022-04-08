@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  authServer: 'https://localhost:4300'
+  authServer: 'https://localhost:4300',
+  reCaptchaKey: '6Ldk_VYfAAAAAKrTSEXtWlOqXgCAZPpTsdWeIoxV'
 };
 
 /*

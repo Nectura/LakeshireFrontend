@@ -27,10 +27,12 @@ export class RegistrationFormComponent implements OnInit {
       ],
       updateOn: 'change'
     }),
-    /*     gender: new FormControl("", [
+    reCaptchaToken: new FormControl(null, Validators.required)
+  });
+
+/*     gender: new FormControl("", [
           Validators.required
         ]), */
-  });
 
   constructor() { }
 
@@ -38,6 +40,7 @@ export class RegistrationFormComponent implements OnInit {
   }
 
   async register() {
-
+    // TODO: validate the reCaptcha token that the challenge gave to the user
+    //       and if successful then make the registration request otherwise show UI feedback and reset the reCaptcha challenge
   }
 }
