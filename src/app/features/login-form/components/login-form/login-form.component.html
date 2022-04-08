@@ -1,0 +1,17 @@
+<div class="form-wrapper">
+    <form class="login-form" (submit)="$event.preventDefault(); login()" [formGroup]="loginFormGroup">
+        <label for="emailAddress">Email: </label>
+        <input id="emailAddress" type="text" formControlName="emailAddress">
+
+        <br />
+
+        <label for="password">Password: </label>
+        <input id="password" type="password" formControlName="password">
+
+        <button mat-raised-button color="primary" class="login-btn">Login</button>
+
+        <br /><br />
+
+        <a routerLink="/register">Need an account? click here!</a>
+    </form>
+</div>

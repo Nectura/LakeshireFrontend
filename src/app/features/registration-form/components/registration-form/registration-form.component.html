@@ -1,0 +1,93 @@
+<div class="form-wrapper">
+    <form class="registration-form" [formGroup]="registrationFormGroup" (ngSubmit)="register()">
+
+        <mat-form-field appearance="outline" class="first-name" hideRequiredMarker="true">
+            <mat-label>First Name</mat-label>
+            <input type="text" matInput formControlName="firstName">
+            <mat-error *ngIf="registrationFormGroup.controls['firstName'].hasError('required')">
+                What is your name?
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="last-name" hideRequiredMarker="true">
+            <mat-label>Last Name</mat-label>
+            <input type="text" matInput formControlName="lastName">
+            <mat-error *ngIf="registrationFormGroup.controls['lastName'].hasError('required')">
+                What is your name?
+            </mat-error>
+        </mat-form-field>
+
+        <br /><br />
+
+        <mat-form-field appearance="outline" class="email-address" hideRequiredMarker="true">
+            <mat-label>Email Address</mat-label>
+            <input type="email" matInput formControlName="emailAddress" placeholder="Ex. pat@example.com">
+            <mat-error
+                *ngIf="registrationFormGroup.controls['emailAddress'].hasError('email') && !registrationFormGroup.controls['emailAddress'].hasError('required')">
+                Please enter a valid email address.
+            </mat-error>
+            <mat-error *ngIf="registrationFormGroup.controls['emailAddress'].hasError('required')">
+                You'll use this when you log in and if you ever need to reset your password.
+            </mat-error>
+        </mat-form-field>
+
+        <br /><br />
+
+        <mat-form-field appearance="outline" class="password" hideRequiredMarker="true">
+            <mat-label>Password</mat-label>
+            <input type="password" matInput formControlName="password">
+            <mat-error
+                *ngIf="!registrationFormGroup.controls['password'].hasError('required') && registrationFormGroup.controls['password'].errors">
+                Your password needs to meet the following requirements:<br />
+
+                <span [ngClass]="{
+                    'passes-validation': !registrationFormGroup.controls['password'].hasError('noUpper'),
+                    'fails-validation': registrationFormGroup.controls['password'].hasError('noUpper')
+                }">- consist of at least 1 upper-case character</span><br />
+
+                <span [ngClass]="{
+                    'passes-validation': !registrationFormGroup.controls['password'].hasError('noLower'),
+                    'fails-validation': registrationFormGroup.controls['password'].hasError('noLower')
+                }">- consist of at least 1 lower-case character</span><br />
+
+                <span [ngClass]="{
+                    'passes-validation': !registrationFormGroup.controls['password'].hasError('noNumber'),
+                    'fails-validation': registrationFormGroup.controls['password'].hasError('noNumber')
+                }">- consist of at least 1 digit</span><br />
+
+                <span [ngClass]="{
+                    'passes-validation': !registrationFormGroup.controls['password'].hasError('noSpecial'),
+                    'fails-validation': registrationFormGroup.controls['password'].hasError('noSpecial')
+                }">- consist of at least 1 special character</span><br />
+
+                <span [ngClass]="{
+                    'passes-validation': !registrationFormGroup.controls['password'].hasError('noMinLength'),
+                    'fails-validation': registrationFormGroup.controls['password'].hasError('noMinLength')
+                }">- be at least 8 characters long</span><br />
+            </mat-error>
+            <mat-error *ngIf="registrationFormGroup.controls['password'].hasError('required')">
+                Please enter your ultra-secured password that meets all of our reasonable requirements.
+            </mat-error>
+        </mat-form-field>
+
+        <!--         <mat-form-field appearance="fill">
+            <mat-label>Gender</mat-label>
+            <input type="email" matInput formControlName="emailAddress" placeholder="Ex. pat@example.com">
+            <mat-error *ngIf="registrationFormGroup.controls['emailAddress'].hasError('email') && !registrationFormGroup.controls['emailAddress'].hasError('required')">
+                Please enter a valid email address
+            </mat-error>
+            <mat-error *ngIf="registrationFormGroup.controls['emailAddress'].hasError('required')">
+                Email is <strong>required</strong>
+            </mat-error>
+        </mat-form-field> -->
+
+        <br /><br /><br /><br /><br />
+
+        <button mat-raised-button color="primary" type="submit" class="registration-btn" [disabled]="!registrationFormGroup.valid">
+            Register
+        </button>
+
+    </form>
+</div>
+
+<!-- <a routerLink="/login">Already have an account? click here!</a> -->

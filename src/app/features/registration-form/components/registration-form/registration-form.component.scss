@@ -1,0 +1,41 @@
+.form-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 90vh;
+}
+
+.registration-form {
+  border-width: 5px;
+  border-style: groove;
+  text-align: left;
+  padding: 30px;
+  min-width: 50vh;
+}
+
+.registration-btn {
+  width: 100%;
+}
+
+.first-name {
+  padding-right: 15px;
+}
+
+.email-address {
+  padding-bottom: 10px;
+  width: 100%;
+  line-height: 15.95px;
+}
+
+.password {
+  width: 100%;
+}
+
+.passes-validation {
+  color: green;
+}
+
+.fails-validation {
+  color: red;
+}
