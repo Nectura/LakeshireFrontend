@@ -1,11 +1,11 @@
 import { HttpClient, HttpErrorResponse, HttpStatusCode } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { RecaptchaComponent } from 'ng-recaptcha';
 import { lastValueFrom } from 'rxjs';
-import { LOGIN_ENDPOINT } from 'src/app/constants/endpoints';
-import { AuthType } from 'src/app/core/enums/auth-type';
-import { AuthService } from 'src/app/core/services/auth-service';
+import { LOGIN_ENDPOINT } from 'src/app/constants/auth-endpoints';
+import { AuthService } from 'src/app/core/services/auth.service';
 import { JwtTokenResponse } from 'src/app/features/login-form/models/JwtTokenResponse';
 import { environment } from 'src/environments/environment';
 
@@ -33,7 +33,8 @@ export class LoginFormComponent implements OnInit {
   
   constructor(
     private readonly httpClient: HttpClient,
-    private readonly authService: AuthService) { }
+    private readonly authService: AuthService,
+    private readonly router: Router) { }
 
   ngOnInit(): void {
   }
@@ -46,9 +47,8 @@ export class LoginFormComponent implements OnInit {
         emailAddress: this.loginFormGroup.value.emailAddress,
         password: this.loginFormGroup.value.password
       }));
-      const authType = this.loginFormGroup.value.persistentLogin === true ? AuthType.LocalStorage : AuthType.Session;
-      this.authService.updateToken(response.accessToken, response.refreshToken, authType);
-      // TODO: redirect to home page here
+      this.authService.updateToken(response.accessToken, response.refreshToken, this.loginFormGroup.value.persistentLogin);
+      this.router.navigate(['/']);
     } catch (ex) {
       const errorResponse = ex as HttpErrorResponse;
       switch (errorResponse.status) {
@@ -64,6 +64,7 @@ export class LoginFormComponent implements OnInit {
           break;
       }
       //this.loginFormGroup.controls['password'].reset();
+    } finally {
       this.reCaptcha?.reset();
     }
   }
